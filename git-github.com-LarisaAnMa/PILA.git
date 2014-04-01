@@ -1,0 +1,82 @@
+public class Pila {
+	public Nodo inicio;
+	public int tamanio;
+
+    public Pila() {
+    	inicio=null;
+    	tamanio=0;
+    }
+
+    public void push(int valor){
+    	Nodo nuevo = new Nodo(valor);
+    	if (esVacia()){
+    		inicio = nuevo;
+    	} else {
+			nuevo.sig = inicio;
+			inicio = nuevo;
+    	}
+    	tamanio++;
+    }
+
+    public int pop (){
+    	if(esVacia()){
+    		return -1;
+    	} else {
+    		Nodo aux=inicio;
+    		inicio=aux.sig;
+    		tamanio--;
+    		return aux.dato;
+    	}
+    }
+
+    public int peek (){
+    	if(esVacia()){
+    		return -1;
+    	} else {
+    		return inicio.dato;
+    	}
+    }
+
+    public boolean esVacia(){
+    	return tamanio==0;
+    }
+
+    public int tamanio(){
+    	return tamanio;
+    }
+
+    public void recorrer(){
+    	if (!esVacia()){
+    		Nodo aux= inicio;
+	    	while (aux != null){
+	    		System.out.print(aux.dato+", ");
+	    		aux = aux.sig;
+	    	}
+	    	System.out.println("");
+    	} else {
+    		System.out.println("La pila está vacía");
+    	}
+    }
+
+    public static void main (String ... args){
+    	Pila pila= new Pila();
+    	System.out.println("Primera: ");
+    	pila.recorrer();
+    	pila.push(4);
+    	pila.push(1);
+    	pila.push(6);
+    	pila.push(7);
+    	pila.push(8);
+
+    	System.out.println("Agrego 4: ");
+    	pila.recorrer();
+    	System.out.println("Primer elemento: "+String.valueOf(pila.peek())+" tamaño: "+String.valueOf(pila.tamanio()));
+    	pila.recorrer();
+    	pila.push(1);
+    	pila.push(6);
+    	pila.push(7);
+    	System.out.println("Primer elemento: "+String.valueOf(pila.peek())+" tamaño: "+String.valueOf(pila.tamanio()));
+    	pila.recorrer();
+
+    }
+}
